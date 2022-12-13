@@ -1,0 +1,146 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+ 
+try:
+    print("Want to calculate SGPA ? press 1 otherwise give a Thanks 🙂 ")
+    en = int(input())
+    if (en == 1):
+        subject = []
+        n = int(input("Enter how many subjects you take : "))
+ 
+        print("enter the subjects results : ")
+        for i in range(0, n):
+            ele = float(input())
+ 
+            subject.append(ele)
+        credit = []
+ 
+        print("Enter the subjects credit serially : ")
+        for i in range(0, n):
+            ele = float(input())
+ 
+            credit.append(ele)
+ 
+        totalcr = 0
+ 
+        for ele in range(0, len(credit)):
+            totalcr = totalcr + credit[ele]
+ 
+        total = zip(subject, credit)
+ 
+        mul = [x * y for (x, y) in total]
+ 
+        totals = 0
+ 
+        for ele in range(0, len(mul)):
+            totals = totals + mul[ele]
+ 
+        final = totals / totalcr
+        fig = plt.figure()
+        ax = fig.add_axes([0,0,1,1])
+        langs = ['Total_SGPA']
+        students = [final]
+        ax.bar(langs,students)
+        plt.show()
+        print("SGPA : ", "{:.3f}".format(final))
+ 
+except:
+    print("আচ্ছা ঠিক আছে ধন্যবাদ 🙂")
+ 
+ 
+try:
+    print("Want to know the average CGPA ? press 1 otherwise give a thanks 🙂 ")
+    press = int(input())
+    if (press == 1):
+        cg = []
+        x = int(input("How many semester you completed ? : "))
+ 
+        print("enter the semester results : ")
+        for i in range(0, x):
+            ele = float(input())
+            
+ 
+            cg.append(ele)
+        
+ 
+        cr = []
+ 
+        print("Serially enter total credits in every semesters : ")
+        for i in range(0, x):
+            xy = float(input())
+ 
+            cr.append(xy)
+        semc=[]
+        for i in range(1,x+1):
+          semc.append(i)
+        y_pos = np.arange(len(semc))
+        plt.bar(y_pos, cg, color=['orange','pink','black','chocolate','crimson','yellow', 'turquoise','red', 'green', 'blue', 'cyan','purple'])
+        plt.xticks(y_pos, semc)
+        plt.show()
+ 
+        totalr = zip(cg, cr)
+ 
+        add = [a * b for (a, b) in totalr]
+ 
+        totalcredit = 0
+ 
+        for y in range(0, len(cr)):
+            totalcredit = totalcredit + cr[y]
+ 
+        totaladd = 0
+ 
+        for f in range(0, len(add)):
+            totaladd = totaladd + add[f]
+ 
+        final_result = totaladd / totalcredit
+        
+        
+ 
+        fig = plt.figure()
+        ax = fig.add_axes([0,0,1,1])
+        langs = ['Total_CGPA']
+        students = [final_result]
+        ax.bar(langs,students)
+        plt.show()
+        print("Your Total CGPA: ", "{:.3f}".format(final_result))
+        print("Thanks for using my code 🙂")
+        
+        
+        q=[] 
+        for i in range(0,x):
+          q.append(i)
+ 
+        y = cg.copy()
+        
+ 
+        slope, intercept, r, p, std_err = stats.linregress(q, y)
+ 
+        def myfunc(q):
+          return slope * q + intercept 
+ 
+        cgpa1 = myfunc(int(input("Enter next semester in number: ")))  
+        fig = plt.figure() 
+        ax = fig.add_axes([0,0,1,1])
+        langs = ['Predicted CGPA'] 
+        students = [cgpa1]
+        ax.bar(langs,students) 
+        plt.show()
+        print("CGPA : ", "{:.3f}".format(cgpa1))
+        print("Next semester result is nearly: ",cgpa1)
+ 
+        try:
+          print("Want to know expected CGPA ? press 1 otherwise give a thanks 🙂 ")
+          press = int(input())
+          if (press == 1):
+            expect=float(input("Enter the expected CGPA"))
+            
+            tem=expect-final_result
+            tem=tem+expect
+          print("To achieve",expect,"you have to hold",tem,"SGPA in every semester")
+        except:
+          print("Thanks 🙂 ")
+ 
+except:
+ 
+  print("Thanks 🙂 ")
